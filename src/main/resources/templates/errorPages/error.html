@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Error</title>
+  <style>
+    .container{
+      margin-left:7.5%;
+    }
+    body{
+      background: #dce4e6;
+    }
+  </style>
+</head>
+<body>
+<div th:insert = "sidebarOG :: sidebar"></div>
+<div class="container" style="text-align: center">
+  <p style="padding: 80px;"></p>
+  <h1 style="text-align: center" class="alert alert-danger">Oops!</h1>
+  <strong style="text-align: center; color: red"><h2>Make sure you select an item before attempting to submit</h2></strong>
+  <br/><br/>
+  <div style="text-align: left">
+    <a href="#" onclick="javascript:window.history.back(-1);return false;" class="my-auto"><span class="badge  badge-success" style="font-size: x-large; margin-left: 47%">Go Back</span></a>
+  </div>
+</div>
+</body>
+</html>

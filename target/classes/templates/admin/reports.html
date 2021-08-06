@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+
+    <title>Generate Report</title>
+    <style>
+
+
+        body {
+            background-color: #dce4e6;
+            font-family: sans-serif;
+        }
+
+        .submit {
+            background-color: black;
+            border-radius: 12px;
+            border: 0;
+            margin-right: 30px;
+            box-sizing: border-box;
+            color: #eee;
+            cursor: pointer;
+            font-size: 14px;
+            height: 37px;
+            margin-top: 38px;
+            outline: 0;
+            text-align: center;
+            width: 13.5%;
+        }
+
+        .submit:hover {
+            background-color: slategrey;
+            color: black}
+
+        .arrow {
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            display: inline-block;
+            padding: 3px;
+        }
+
+        .right {
+            transform: rotate(-45deg);
+            -webkit-transform: rotate(-45deg);
+        }
+        .stats{
+            clear: both;
+        }
+
+        .pie{
+            margin-left: 15%;
+            margin-right: auto;
+            float: left;
+        }
+        .bar{float: right}
+        .butt{
+            clear: both;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<br>
+<br>
+
+<div th:insert = "AdminSide :: adminsidebar"></div>
+<br>
+<br>
+<br>
+<h1 style="text-align: left; margin-left: 24%; font-family: sans-serif;">General Statistics</h1>
+<br>
+<br>
+<br>
+<h3 style=" display:inline;margin-left: 24%;" >Employee Distribution</h3>
+<h3 style=";display:inline;padding-left: 550px" >Asset Demand Statistics</h3>
+<br>
+
+<div class="stats">
+
+    <div style="height: auto" class="pie">
+        <div id="piechart"></div>
+    </div>
+    <div style="width:90%;max-width:600px;" class="bar">
+        <canvas id="myChart" style="width:90%;max-width:600px; display: inline"></canvas></div>
+</div>
+<br>
+
+<form method="get">
+    <div class="butt">
+
+        <button style="display: inline;margin-left: 20%;;" class="submit" type="submit" formaction="/admin/curEmpReport">Current Employees Report<i class="arrow right"></i></button>
+
+        <button style="display: inline" class="submit" type="submit" formaction="/admin/checkedOutAssetsReport">Checked Out Assets Report<i class="arrow right"></i></button>
+
+        <button style="display: inline" class="submit" type="submit" formaction="/admin/curAssetsReport">Current Assets Report<i  class="arrow right"></i></button>
+
+        <button style="display: inline" class="submit" type="submit" formaction="/admin/discAssetsReport">Discarded Assets Report<i class="arrow right"></i></button>
+
+        <button style="display: inline" class="submit" type="submit" formaction="/admin/formerEmpReport">Former Employees Report<i class="arrow right"></i></button>
+    </div>
+</form>
+
+
+<input id = "ceo" type="hidden"  th:value="${ceo}">
+<input id = "cto" type="hidden"  th:value="${cto}">
+<input id = "qa" type="hidden"  th:value="${qa}">
+<input id = "jd" type="hidden"  th:value="${jd}">
+<input id = "sd" type="hidden"  th:value="${sd}">
+
+
+<input id = "lap" type="hidden"  th:value="${laptop}">
+<input id = "des" type="hidden"  th:value="${desktop}">
+<input id = "mou" type="hidden"  th:value="${mouse}">
+<input id = "key" type="hidden"  th:value="${keyboard}">
+<input id = "ser" type="hidden"  th:value="${server}">
+</body>
+</html>
+
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<script type="text/javascript">
+    // Load google charts
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    // Draw the chart and set the chart values
+    function drawChart() {
+        const ceo = Number(document.getElementById("ceo").value);
+        const cto = Number(document.getElementById("cto").value);
+        const qa = Number(document.getElementById("qa").value);
+        const jd = Number(document.getElementById("jd").value);
+        const sd = Number(document.getElementById("sd").value);
+
+        var data = google.visualization.arrayToDataTable([
+
+            ['Positions', 'percent present'],
+            ['CEOs', ceo],
+            ['CTOs', cto],
+            ['QA officers', qa],
+            ['Junior Developers', jd],
+            ['Senior Developers', sd],
+
+        ]);
+
+        // Optional; add a title and set the width and height of the chart
+        var options = {'title':' ', 'width':600, 'height':400,backgroundColor:'#dce4e6'};
+
+        // Display the chart inside the <div> element with id="piechart"
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        chart.draw(data, options);}
+</script>
+
+<script>
+    const a = Number(document.getElementById("lap").value);
+    const b = Number(document.getElementById("des").value);
+    const c = Number(document.getElementById("mou").value);
+    const d = Number(document.getElementById("key").value);
+    const e = Number(document.getElementById("ser").value);
+    var xValues = ["Laptops", "Desktops", "Mouse", "Keyboard", "Server"];
+    var yValues = [a, b, c, d, e];
+    var barColors = ["armyblue","teal","blue", "aqua","lightblue"];
+
+    new Chart("myChart", {
+        type: "bar",
+        data: {
+            labels: xValues,
+            datasets: [{
+                backgroundColor: barColors,
+                data: yValues
+            }]
+        },
+        options: {
+            legend: {display: false},
+            title: {
+                display: true,
+            }
+        }
+    });
+</script>

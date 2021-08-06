@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th ="https://www.thymeleaf.org">
+<head>
+    <script src="https://kit.fontawesome.com/5eef0d2faa.js" crossorigin="anonymous"></script>
+    <link th:href="@{/styling/loginPage.css}" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <title>Portal</title>
+<!--    <style>-->
+<!--       -->
+<!--    </style>-->
+</head>
+
+<body>
+<div th:insert = "sidebarOG :: sidebar"></div>
+<div class = "across" >
+   <p style="font-size: 18px; margin-top:auto;margin-left:49%">ASSET MANAGEMENT PORTAL</p>
+</div>
+<div class="form" style="align-items: center; left: calc((100% - 125px) / 2);">
+    <div style="align-items: center; text-align: center; padding-top: 20px"><span class="fas fa-user fa-3x"></span></div>
+    <div class="subtitle" style="text-align: center">Sign into your account</div>
+    <br>
+    <form action="/assetportal/loginVerify" th:object="${login_details}" method="POST">
+<!--        <div th:if="${error}" class="alert alert-danger mb-3" >-->
+<!--            <strong style="color:#a8324c; font-family: sans-serif;font-size:16px;font-weight:500"> Invalid username or password! </strong>-->
+<!--        </div>-->
+        <div class="input-container ic1">
+            <label for="uname" style="padding-left: 10px">Username <span class="fas fa-id-card-alt" ></span></label>
+
+            <input id="uname" class="input" type="text"  th:field="${login_details.username}" required/>
+<!--            <div class="cut"></div>-->
+        </div>
+        <div class="input-container ic2">
+            <label for="password" style="padding-left: 10px;" >Password <span class="fas fa-lock"></span></label>
+
+            <input id="password" class="input" type="password"  th:field="${login_details.password}" required />
+<!--            <div class="cut"></div>-->
+        </div>
+        <br>
+<!--        <br>-->
+        <div class="subBut">
+
+        <button type="submit" class="submit">LOG IN</button>
+        </div>
+    </form>
+<!--    <div class="cut"></div>-->
+</div>
+<!--  </div>-->
+<!--   <a href =""><button type="submit"class = "createAcc">Create New Account</button></a>&ndash;&gt;-->
+
+
+
+</body>
+</html>

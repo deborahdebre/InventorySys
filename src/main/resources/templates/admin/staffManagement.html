@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+  <title>Staff Management</title>
+  <style>
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      padding: 5px;
+    }
+
+    th{
+      background-color: black;
+      color: white;
+    }
+
+    tr:nth-child(odd) {
+      background-color: lightgrey;}
+    tr:nth-child(even) {
+      background-color: white;}
+    table {
+      border-spacing: 15px;
+    }
+
+    body {
+      background-color:#dce4e6;
+      font-family: sans-serif;
+    }
+
+
+    .submit {
+      background-color: black;
+      border-radius: 12px;
+      border: 0;
+      margin-right: 30px;
+      box-sizing: border-box;
+      color: #eee;
+      cursor: pointer;
+      font-size: 14px;
+      height: 37px;
+      margin-top: 38px;
+      outline: 0;
+      text-align: center;
+      width: 10%;
+    }
+
+    .submit:hover {
+      background-color: slategrey;
+      color: black}
+  </style>
+
+</head>
+
+<body>
+<br>
+<br>
+
+<div th:insert = "AdminSide :: adminsidebar"></div>
+<br>
+<br>
+<br>
+<h1 style="text-align: left; margin-left: 24%; font-family: sans-serif;">Current Employees</h1>
+<br>
+<br>
+<br>
+<form method="POST" >
+
+  <button style =" margin-left:54%;display: inline" class="submit" type="submit" formaction="/admin/createnewaccount"><span class="fas fa-plus-circle"></span> Add new Staff</button>
+
+  <button style="display: inline" class="submit" type="submit" formaction="/admin/update"><i class="fas fa-user-edit"></i> Update Record</button>
+
+  <button style="display: inline" class="submit" type="submit" formaction="/admin/deleteRecord"><i class="fas fa-trash-alt"></i> Delete Record</button>
+  <br>
+  <br>
+  <table style="width:65%; margin-left: 24%; margin-right: auto;">
+    <tr>
+      <th> </th>
+      <th>Staff ID</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email Address</th>
+      <th>Job title</th>
+      <th>Role</th>
+
+
+    </tr>
+    <tr th:each="staff: ${allStaff}">
+      <td><input name="staff" id="staff" type="checkbox" th:value="${staff.getStaffId()}" /> </td>
+      <td th:text="${staff.staffId}"> </td>
+      <td th:text="${staff.FName}"> </td>
+      <td th:text="${staff.LName}"> </td>
+      <td th:text="${staff.email}"> </td>
+      <td th:text="${staff.jobDescription}"> </td>
+      <td th:text="${staff.role.role}"> </td>
+    </tr>
+
+  </table>
+
+
+</form>
+
+
+</body>
+
+</html>

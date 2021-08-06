@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body{
+            background-color:#dce4e6;
+            font-family: sans-serif;}
+        .titles{
+            width: 700px;
+            height: 100px;
+            margin : auto;
+            align-items:center;
+        }
+        .subtitles{
+            clear:both;
+        }
+
+
+        .formContainer{
+            width: 350px;
+            border: 3px solid black;
+            padding : 30px 50px;
+            margin-left: 40%;
+            margin-right: auto;
+            color:white;
+            background-color:black;
+            border-radius: 25px;
+            height: 380px;
+            align-items: center;
+        }
+        input{
+            border-radius: 12px;
+            padding-bottom: 5px;
+            padding-top: 5px;
+            padding-left: 10px;
+        }
+        select{
+            border-radius: 12px;
+            padding-bottom: 5px;
+            padding-top: 5px;
+            padding-left: 10px;
+        }
+
+        .titleContainer{
+            width: 300px;
+            /* border: 2px solid black; */
+            padding : 10px;
+            margin-left: auto;
+            margin-right: auto;
+            /* margin : 30px 80px; */
+
+            text-align: center;
+            vertical-align: middle;
+            z-index: 10;
+            /*background-color:lightblue;*/
+            height: 40px;
+        }
+        /* .formDetText{
+            float: left;
+        } */
+        .formDetBoxes{
+            align-items:center;
+
+        }
+        .subDet1{
+            float: left;
+
+        }
+
+        .subDet2{
+            float: left;
+
+        }
+
+        .subDet4{
+            float: left;
+
+        }
+        .subDet5{
+            float: left;
+
+        }
+        .subDet6{
+            float: left;
+
+        }
+        .subDet7{
+            float: left;
+
+        }
+        .subDet8{
+            float: left;
+        }
+        .row{
+            clear:both;
+        }
+
+
+        .submit {
+            background-color: grey;
+            border-radius: 12px;
+            border: 0;
+            box-sizing: border-box;
+            color: #eee;
+            margin-left: 120px;
+            cursor: pointer;
+            font-size: 16px;
+            height: 30px;
+            margin-top: 25px;
+            outline: 0;
+            text-align: center;
+            width: 30%;
+        }
+        .submit:hover {
+            background-color: slategrey;
+            color: black}
+    #location {
+        width: 150px ;
+        height: 28px;
+        line-height: 28px;
+
+    }
+        #category {
+            width: 150px ;
+            height: 28px;
+            line-height: 28px;
+
+        }
+        #status{
+            width: 150px;
+            height: 28px;
+            line-height: 28px;
+        }
+    </style>
+    <title>
+        New Asset
+    </title>
+</head>
+<body>
+<div th:insert = "AssetManSide :: assetmansidebar"></div>
+<br>
+<div class="titles">
+    <div class ="subtitles">
+        <br>
+        <br>
+
+        <br>
+        <br>
+    </div>
+
+</div>
+<p style="padding: 40px"></p>
+<div class ="formContainer">
+    <div class ="titleContainer">
+        <h2 style="color:whitesmoke;">New Asset Form</h2>
+        <br>
+    </div>
+    <br>
+    <form method="POST" th:object="${asset_details}"  th:action="@{/assetmanager/newAssetSave}" enctype="multipart/form-data">
+
+        <div class="formDetBoxes">
+            <div class ="row">
+
+                <div class="subDet1">
+                    <label for ="brand" style="margin-left:10px">Brand</label>
+                    <br>
+                    <br>
+                    <input type="text" id="brand" th:field="${asset_details.brand}" style="background-color: white; border: 2px solid black;margin-left:10px;"required>
+                </div>
+                <div class="subDet3">
+                    <label for ="sn" style="margin-left:10px">SerialNumber</label>
+                    <br>
+                    <br>
+                    <input type="text" id="sn" th:field="${asset_details.serialNum}" style="background-color: white; border: 2px solid black;margin-left:10px;" required>
+                </div>
+
+
+                <div class ="row">
+                    <div class ="subDet2">
+                        <br>
+                        <label for ="category" style="margin-left:10px;">Category</label>
+                        <br>
+                        <br>
+                        <select  id="category" th:field="*{category.categoryId}" style="background-color: white;  border: 2px solid black;margin-left:10px;" name="category">
+                            <option value= 1 >Laptop</option>
+                            <option value= 2 >Desktop</option>
+                            <option value= 3 >Keyboard</option>
+                            <option value= 4 >Mouse</option>
+                            <option value= 5 >Server</option>
+                        </select>
+                    </div>
+                    <div class="subDet5">
+                        <br>
+                        <label for ="condition" style="margin-left:10px">Condition</label>
+                        <br>
+                        <br>
+                        <input type="text" th:field="${asset_details.condition}"id="condition"  style="background-color: white; border: 2px solid black;margin-left:10px;" required >
+                    </div>
+                </div>
+                <br>
+                <div class ="row">
+                    <div class ="subDet6">
+                        <br>
+                        <label for ="location" style="margin-left:10px;">Location</label>
+                        <br>
+                        <br>
+                        <select th:field="*{location.locationId}" style="background-color: white; padding-right:40px; border: 2px solid black;margin-left:10px;" id="location" name="location" >
+                            <option value=1 >CEO office</option>
+                            <option value=2 >Conference room</option>
+                            <option value=3 >Dev office</option>
+                            <option value=4 >QA office</option>
+                            <option value=5 >Marketing office</option>
+                        </select>
+                        <br>
+                    </div>
+                    <div class="subDet7">
+                        <br>
+                        <label for ="status" style="margin-left:10px">Status</label>
+                        <br>
+                        <br>
+                        <select th:field="*{status.statusId}" style="background-color: white; padding-right:85px; border: 2px solid black;margin-left:10px;" id="status" name="status" required>
+                            <option value=1 >Available</option>
+<!--                            <option value=2 >Checked Out</option>-->
+<!--                            <option value=3 >Pending</option>-->
+<!--                            <option value=4 >Discarded Asset</option>-->
+                        </select>
+                    </div>
+                </div>
+
+            <button class="submit" style="margin-left: 140px" type="submit">Save Asset</button>
+            </div>
+        </div>
+    </form>
+
+</div>
+</body>
+</html>

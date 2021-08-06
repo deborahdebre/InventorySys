@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <title>Requests</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+
+        th{
+            background-color: black;
+            color: white;
+        }
+
+        tr:nth-child(odd) {
+            background-color: lightgrey;}
+        tr:nth-child(even) {
+            background-color: white;}
+        table {
+            border-spacing: 15px;
+        }
+
+        body {
+            background-color:#dce4e6;
+            font-family: sans-serif;
+        }
+
+
+        .submit {
+            background-color: black;
+            border-radius: 12px;
+            border: 0;
+            margin-right: 30px;
+            box-sizing: border-box;
+            color: #eee;
+            cursor: pointer;
+            font-size: 14px;
+            height: 37px;
+            margin-top: 38px;
+            outline: 0;
+            text-align: center;
+            width: 11%;
+        }
+
+        .submit:hover {
+            background-color: slategrey;
+            color: black}
+
+
+    </style>
+
+</head>
+
+<body>
+<br>
+<br>
+
+<div th:insert = "AdminSide :: adminsidebar"></div>
+<br>
+<br>
+<br>
+<h1 style="text-align: left; margin-left: 24%; font-family: sans-serif;">Pending Requests for Check Out</h1>
+<br>
+<br>
+<br>
+<form action="/admin/process"  method="post" >
+    <button style="margin-left: 78%"  class="submit" type="submit">Process Requests</button>
+    <br>
+    <br>
+    <table style="width:65%;margin-left: 24%; margin-right: auto;">
+        <tr>
+            <th>Staff Id</th>
+            <th>Staff Name</th>
+            <th>Staff Job Title</th>
+            <th>Asset ID</th>
+            <th>Asset S/N</th>
+            <th>Asset Category</th>
+            <th>Asset Brand</th>
+            <th>Asset Condition</th>
+            <th></th>
+
+        </tr>
+
+        <tr th:each="item: ${pairs}">
+            <td style="text-align:center" th:text="${item.staffId}"></td>
+            <td style="text-align:center" th:text="${item.name}"></td>
+            <td style="text-align:center" th:text="${item.job_title}"></td>
+            <td style="text-align:center" th:text="${item.assetId}"></td>
+            <td style="text-align:center" th:text="${item.assetNum}"></td>
+            <td style="text-align:center" th:text="${item.assetCategory}"></td>
+            <td style="text-align:center" th:text="${item.assetBrand}"></td>
+            <td style="text-align:center" th:text="${item.assetCondition}"></td>
+            <td> <input type="radio" id="approve" name="req" value=1 >
+                <label for="approve">Approve </label><br>
+                <input type="radio" id="deny" name="req" value=0>
+                <label for="deny">Deny</label><br>
+
+                <input type="hidden" name="id" th:value="${item.assetId}" />
+            </td>
+        </tr>
+
+
+    </table>
+    <br>
+    <br>
+    <br>
+
+</form>
+
+
+</body>
+</html>

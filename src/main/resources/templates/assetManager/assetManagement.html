@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <script src="https://kit.fontawesome.com/5eef0d2faa.js" crossorigin="anonymous"></script>
+    <title>Asset Management</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+
+        th{
+            background-color: black;
+            color: white;
+        }
+
+        tr:nth-child(odd) {
+            background-color: lightgrey;}
+        tr:nth-child(even) {
+            background-color: white;}
+        table {
+            border-spacing: 15px;
+        }
+
+        body {
+            background-color:#dce4e6;
+            font-family: sans-serif;
+        }
+
+        .submit {
+            background-color: black;
+            border-radius: 12px;
+            border: 0;
+            margin-right: 30px;
+            box-sizing: border-box;
+            color: #eee;
+            cursor: pointer;
+            font-size: 14px;
+            height: 37px;
+            margin-top: 38px;
+            outline: 0;
+            text-align: center;
+            width: 11%;
+        }
+
+        .submit:hover {
+            background-color: slategrey;
+            color: black}
+    </style>
+
+</head>
+
+<body>
+
+
+<br>
+<br>
+
+<div th:insert = "AssetManSide :: assetmansidebar"></div>
+<br>
+<br>
+<br>
+<h1 style="text-align: left; margin-left: 24%; font-family: sans-serif;">All Assets</h1>
+<br>
+
+
+
+<form method="POST">
+    <button class="submit" style =" margin-left:51%;display: inline"  formaction="/assetmanager/newAsset"><span class="fas fa-plus-circle"></span> Add New Asset</button>
+
+    <button class="submit" style="display: inline" type="submit" formaction="/assetmanager/updateAsset"><i class="fas fa-pencil-alt"></i> Update  Asset</button>
+
+    <button class="submit" style="display: inline" type="submit" formaction="/assetmanager/deleteAsset"><i class="fas fa-trash-alt"></i> Delete Asset</button>
+    <br>
+    <br>
+    <table style="width:65%; margin-left: 24%; margin-right: auto;">
+    <tr>
+        <th> </th>
+        <th>Asset ID</th>
+        <th>Category</th>
+        <th>Brand</th>
+        <th>S/N</th>
+        <th>Condition</th>
+        <th>Status</th>
+        <th>Location</th>
+    </tr>
+
+    <tr th:each="asset: ${allAsset}">
+        <td><input name="asset" id="asset" type="checkbox" th:value="${asset.getAssetId()}" /> </td>
+        <td th:text="${asset.assetId}"> </td>
+        <td th:text="${asset.category.getCategory()}"> </td>
+        <td th:text="${asset.brand}"> </td>
+        <td th:text="${asset.serialNum}"> </td>
+        <td th:text="${asset.condition}"> </td>
+        <td th:text="${asset.status.getStatus()}"> </td>
+        <td th:text="${asset.location.getLocation()}"> </td>
+
+    </tr>
+
+
+</table>
+
+
+</form>
+
+
+</body>
+
+</html>

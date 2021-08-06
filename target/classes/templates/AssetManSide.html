@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th ="https://www.thymeleaf.org">
+<html lang="en">
+
+<body>
+<div id ="assetmansidebar" th:fragment="assetmansidebar">
+  <head>
+    <!--    <link th:href="@{/styling/Sidebar.css}" rel="stylesheet" />-->
+    <script src="https://kit.fontawesome.com/5eef0d2faa.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <style>
+      .newDiv{
+        height: 100vh;
+        position: fixed;
+        width: 200px;
+        left: 0;
+        top:0;
+        /*justify-content: center;*/
+        /*text-align: center;*/
+
+        align-items: center;
+        z-index: 50;
+        background-color: black;
+      }
+      .navList{
+        z-index : 100;
+      }
+      /*.navList i{*/
+      /*  font-size: 24px;*/
+
+      /*}*/
+      .navStuff ul li {
+        position: relative;
+        height: 80px;
+        width: 100% ;
+        list-style: none;
+        line-height: 80px;
+      }
+      .navStuff ul li a{
+        color: #f2f2f2;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        border-radius: 12px;
+        transition: all 0.4s ease;
+      }
+      .navStuff ul li a i{
+        height: 80px;
+        min-width: 80px;
+        border-radius: 12px;
+        line-height: 80px;
+        text-align: center;
+
+      }
+      .navStuff ul li a:hover{
+        color: black;
+        background: ghostwhite;
+        height: 60px;
+        margin-right: 3px;
+      }
+      .navStuff{
+        margin-left: 11px;
+      }
+
+      *{
+        margin: 0;
+        padding: 0;
+        /*box-sizing: border-box;*/
+      }
+    </style>
+  </head>
+
+  <div class = "newDiv">
+    <div>
+      <img th:src="@{/styling/images/Genkey_Horizontal_W.png}"  style="width: 120px; height: 60px; justify-content: center; padding-top: 80px; text-align: center; position: absolute;
+           left: 40px;" alt="Genkey">
+    </div>
+    <div class="navStuff">
+      <ul class="navList">
+        <p style="padding-top: 200px">
+        </p>
+        <li>
+          <a class="active" href="/assetmanager/manage"><i class="fas fa-laptop"></i><span class="buttons">Assets</span></a>
+        </li>
+        <li>
+          <a class="active" href="/assetmanager/pendingCheckInRequest"><i class="far fa-file-alt"></i><span class="buttons">Requests</span></a>
+        </li>
+        <li>
+          <a class="active" href="/assetmanager/reports"><i class="fas fa-chart-line"></i><span class="buttons">Reports</span></a>
+        </li>
+        <li>
+          <a class="active" href="/assetmanager/settings"><i class="fas fa-cog"></i><span class="buttons">Settings</span></a>
+        </li>
+        <li>
+          <a class="active" href="/assetportal/loginAs"><i class="fas fa-address-book"></i><span class="buttons">Login As</span></a>
+        </li>
+        <li>
+          <a class="active" href="/assetportal/logout"><i class="fas fa-sign-out-alt"></i><span class="buttons">Logout</span> </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+</div>
+</body>
+</html>

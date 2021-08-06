@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Error 500</title>
+  <style>
+    .container{
+      margin-left:7.5%;
+    }
+    body{
+      background: #dce4e6;
+    }
+  </style>
+</head>
+<body>
+<div th:insert = "sidebarOG :: sidebar"></div>
+<div class="container" style="text-align: center">
+  <p style="padding: 80px;"></p>
+  <strong style="text-align: center; color: red">ERROR 500</strong>
+  <h1 style="text-align: center" class="alert alert-danger">Oops!</h1>
+  <h2 style="text-align: center">Looks like you're lost</h2>
+  <h2 style="text-align: center">The page you are looking for not is available!</h2>
+
+  <br/><br/>
+  <div style="text-align: left">
+    <a href="#" onclick="javascript:window.history.back(-1);return false;" class="my-auto"><span class="badge  badge-success" style="font-size: x-large; margin-left: 47%">Go Back</span></a>
+  </div>
+</div>
+</body>
+</html>

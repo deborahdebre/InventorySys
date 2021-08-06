@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+
+    <title>Settings</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+
+        th{
+            background-color: #15172b;
+            color: white;
+        }
+
+        tr:nth-child(odd) {
+            background-color: lightgrey;}
+        tr:nth-child(even) {
+            background-color: white;}
+        table {
+            border-spacing: 15px;
+        }
+
+        body {
+            color:black;
+            margin:0;
+            overflow-x: hidden;
+            font-family:sans-serif;
+            background-color:#dce4e6;
+        }
+
+
+        .settings-page{
+            background-color:#dce4e6;
+            width: 100%;
+            min-height: 90vh;
+            align-items: center;
+            justify-content: center;
+            margin-left: 7.5%;
+        }
+        .settings-container{
+            width: 100%;
+            max-width: 850px;
+            margin:auto;
+            align-items: center;
+            justify-content: center;
+            /*padding: 30px;*/
+            /*padding-top:40px;*/
+        }
+        .settings-title{
+            color: black;
+            text-transform: uppercase;
+            font-weight: normal;
+            font-size: 20px;
+            text-align: center;
+        }
+        .settings-section {
+            width:100%;
+            border-top: 2px solid #454545;
+            padding-top: 10px;
+            margin-bottom: 20px;}
+
+        .my-form{
+            max-width:400px;
+            width:100%;
+            margin:30px auto;}
+        .form-submit.right{
+            justify-content: flex-end;
+        }
+        .form-submit{
+            display: flex;}
+        .btn{
+            width:50%;
+        }
+
+        .my-form {
+            visibility:visible;}
+        .form-group{
+            text-align: center;
+        }
+        .input-group{
+            border-radius: 0.25rem;
+            overflow: hidden;
+            align-items: center;}
+        input.form-control {
+            border:none;
+            padding: 10px 15px;
+            background-color: #2e2e2e;
+            color:black;
+            font-family: sans-serif;
+            align-items: center;
+        }
+
+
+        .non-active-form{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;}
+        p{
+            padding: 7px 15px;
+            margin-bottom: 0;
+            font-size: 1rem;
+            cursor:default;
+
+        }
+        /*i {*/
+        /*    cursor:pointer;*/
+        /*    color: #454545;*/
+        /*    transition: all .5s;*/
+        /*    margin-right: 10px;}*/
+
+        h4{
+            font-family: sans-serif;
+        }
+        .form-submit{
+            width: 100%;}
+        .btn {
+            width:100%;
+            border-radius: 10px;
+            background-color: black;
+            color:#E5DADA;
+            cursor:default;
+
+        }
+        .username{
+            text-align:left;
+        }
+        .hello{
+            float:right;
+        }
+        .xoxo1{
+            clear:both;
+        }
+        .xoxo2{
+            clear:both;
+        }
+        .xoxo3{
+            clear:both;
+        }
+        .xoxo4{
+            clear:both;
+        }
+        .form-control{
+            font-size: 16px;
+            color: whitesmoke;
+        }
+
+        .xoxo5{
+            clear:both;
+        }
+
+    </style>
+
+
+</head>
+
+<body>
+
+<br>
+<br>
+
+<div th:insert = "AssetManSide :: assetmansidebar"></div>
+<br>
+<br>
+<br>
+<br>
+<div class="settings-page">
+    <div class="settings-container">
+        <p style="padding: 50px"></p>
+        <h1 class="page-title" style="text-align: center">ACCOUNT SETTINGS</h1>
+        <br>
+        <br>
+        <div class="settings-section">
+            <h2 class="settings-title" style="padding-bottom: 5px;">My profile</h2>
+
+            <div class="settings-section">
+                <h2 class="settings-title"></h2>
+
+                <div class = "xoxo1">
+                    <div class="non-active-form">
+                        <p class="capitalize">Username:</p><i class="username"></i>
+                        <div class = "hello">
+                            <h4 th:text = "${loggedInEmployee.email}"></h4>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class = "xoxo2">
+                    <div class="non-active-form">
+                        <p class="capitalize">Staff ID:</p><i class="username"></i>
+                        <div class = "hello">
+                            <h4 th:text = "${loggedInEmployee.staffId}"></h4>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class = "xoxo3">
+                    <div class="non-active-form">
+                        <p class="capitalize">First Name:</p><i class="username"></i>
+                        <div class = "hello">
+                            <h4 th:text = "${loggedInEmployee.FName}"></h4>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class = "xoxo4">
+                    <div class="non-active-form">
+                        <p>Last Name:</p><i class="username"></i>
+                        <div class = "hello">
+                            <h4 th:text = "${loggedInEmployee.LName}"></h4>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class = "xoxo5">
+                    <div class="non-active-form">
+                        <p>Job Description:</p><i class="username"></i>
+                        <div class = "hello">
+                            <h4 th:text = "${loggedInEmployee.jobDescription}"></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="settings-section">
+                <h2 class="settings-title" style="padding-bottom: 5px;">Password</h2>
+                <div class="settings-section">
+                    <h2 class="settings-title"></h2>
+                <form method="GET" th:object="${changePass}"th:action="@{/assetmanager/updatePassword}" class="form my-form">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input name="currentPassword" placeholder="Old Password" type="password" class="form-control" th:field="${changePass.password}" value="">
+                            <span class="focus-input"></span>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input name="password" placeholder="New Password" type="password" class="form-control" th:field="${changePass.email}" value="">
+                            <span class="focus-input"></span>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-submit right">
+                        <button class="btn" type="submit" >Change Password</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <title>Assets</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+
+        th{
+            background-color: black;
+            color: white;
+        }
+
+        tr:nth-child(odd) {
+            background-color: lightgrey;}
+        tr:nth-child(even) {
+            background-color: white;}
+        table {
+            border-spacing: 15px;
+        }
+
+        body {
+            background-color: #dce4e6;
+            font-family: sans-serif;
+        }
+
+
+        .submit {
+            background-color: black;
+            border-radius: 12px;
+            border: 0;
+            margin-right: 30px;
+            box-sizing: border-box;
+            color: #eee;
+            cursor: pointer;
+            font-size: 14px;
+            height: 37px;
+            margin-top: 38px;
+            outline: 0;
+            text-align: center;
+            width: 8%;
+        }
+
+        .submit:active {
+            background-color: #06b;}
+
+
+    </style>
+
+</head>
+
+<body>
+<div th:insert = "RegularUserSide :: regularsidebar"></div>
+<p style="padding-top: 120px">
+</p>
+<h1 style="margin-left: 25%; font-family: sans-serif;">Dashboard </h1>
+<p style="padding-top: 50px">
+</p>
+
+<h3 style="text-align: left; margin-left: 25%; font-family: sans-serif;">Hello <span th:text="${loggedInEmployee.FName}" style="color: #303245"></span>, the assets in your possession are:</h3>
+<br>
+
+<form method="POST">
+    <table style="width:65%;margin-left: 25%; margin-right: auto;">
+        <tr>
+            <th></th>
+            <th>Asset ID</th>
+            <th>Brand</th>
+            <th>S/N</th>
+            <th>Condition</th>
+        </tr>
+
+        <tr th:each="asset: ${checkedForEmployee}">
+            <td><input name="assetCheck" id="assetCheck" type="checkbox" th:value="${asset.getCheckedAssetID()}" /> </td>
+            <td style="text-align:center" th:text="${asset.checkedAssetID}"> </td>
+            <td style="text-align:center" th:text="${asset.assetBrand}"> </td>
+            <td style="text-align:center" th:text="${asset.assetNum}"> </td>
+            <td style="text-align:center" th:text="${asset.assetCondition}"> </td>
+        </tr>
+    </table>
+    <button class="submit" type="submit" style="margin-left: 82%" formaction="/regular/pendingCheckInRequest">Check In Asset</button>
+</form>
+
+
+<p style="padding-top: 100px">
+</p>
+
+<h3 style="text-align: left;margin-left: 25%; font-family: sans-serif;">You have requested to return the following assets: </h3>
+<br>
+
+<table style="width:65%; margin-left: 25%; margin-right: auto;">
+    <tr>
+        <th>Asset ID</th>
+        <th>Employee ID</th>
+        <th>Brand</th>
+        <th>S/N</th>
+        <th>Condition</th>
+    </tr>
+    <tr th:each="assetN: ${pendingCheckIn}">
+        <td style="text-align:center" th:text="${assetN.checkedAssetID}"> </td>
+        <td style="text-align:center" th:text="${assetN.employeeID}"> </td>
+        <td style="text-align:center" th:text="${assetN.assetBrand}"> </td>
+        <td style="text-align:center" th:text="${assetN.assetNum}"> </td>
+        <td style="text-align:center" th:text="${assetN.assetCondition}"> </td>
+    </tr>
+</table>
+
+
+</body>
+</html>

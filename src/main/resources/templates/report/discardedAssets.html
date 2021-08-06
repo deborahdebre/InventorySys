@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+
+    <title>Current Employees Report</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+
+        th{
+            background-color: black;
+            color: white;
+        }
+
+        tr:nth-child(odd) {
+            background-color: lightgrey;}
+        tr:nth-child(even) {
+            background-color: white;}
+        table {
+            border-spacing: 15px;
+        }
+
+        body {
+            background-color:#dce4e6;
+            font-family: sans-serif;
+        }
+
+
+        .submit {
+            background-color: black;
+            border-radius: 12px;
+            border: 0;
+            margin-right: 30px;
+            box-sizing: border-box;
+            color: #eee;
+            cursor: pointer;
+            font-size: 14px;
+            height: 37px;
+            margin-top: 38px;
+            outline: 0;
+            text-align: center;
+            width: 8%;
+        }
+
+        .submit:hover {
+            background-color: slategrey;
+            color: black}
+        @media print
+        {
+            .noprint {display:none;}
+            table, th, td {
+                border: 1px solid black;
+                color: black;}
+        }
+    </style>
+
+
+</head>
+<body>
+<div  class="noprint">
+    <div th:insert = "AdminSide :: adminsidebar"></div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<h2 style="text-align: left; margin-left: 24%; font-family: sans-serif;">DISCARDED ASSETS REPORT</h2>
+<br>
+<h3 style="text-align: left; margin-left: 24%; font-family: sans-serif;" id="datetime"></h3>
+<div  class="noprint">
+    <button style="margin-left:81%;display: inline" class="submit"  onclick="window.print();" ><i class="fa fa-print"></i> Print Report</button>
+</div>
+<br>
+<br>
+
+<table style="width:65%; margin-left: 24%; margin-right: auto;">
+    <tr>
+        <th>Asset ID</th>
+        <th>Asset Category</th>
+        <th>Asset S/N</th>
+        <th>Asset Brand</th>
+        <th>Asset Condition</th>
+
+    </tr>
+
+    <tr th:each="item: ${asset}">
+        <td th:text="${item.assetId}"></td>
+        <td th:text="${item.category}"> </td>
+        <td th:text="${item.serialNum}"> </td>
+        <td th:text="${item.brand}"> </td>
+        <td th:text="${item.condition}"> </td>
+    </tr>
+
+</table>
+
+
+</body>
+</html>
+
+<script>
+    var dt = new Date();
+    document.getElementById("datetime").innerHTML = dt.toLocaleString();
+</script>
